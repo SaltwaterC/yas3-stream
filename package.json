@@ -1,0 +1,37 @@
+{
+  "name": "yas3-stream",
+  "version": "0.1.0",
+  "main": "lib/main.js",
+  "description": "Yet Another S3 streaming uploader",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 6"
+  },
+  "devDependencies": {
+    "aws-sdk": "= 2.106.0",
+    "mocha": "= 3.5.0",
+    "chai": "= 4.1.1",
+    "js-beautify": "= 1.6.14",
+    "find": "= 0.2.7",
+    "jshint": "= 2.9.5",
+    "rimraf": "= 2.6.1"
+  },
+  "homepage": "https://github.com/SaltwaterC/yas3-stream",
+  "author": {
+    "name": "Stefan Rusu",
+    "url": "http://www.saltwaterc.eu/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SaltwaterC/yas3-stream.git"
+  },
+  "keywords": [
+    "s3",
+    "aws",
+    "amazon",
+    "streams"
+  ],
+  "scripts": {
+    "test": "jake test"
+  }
+}
