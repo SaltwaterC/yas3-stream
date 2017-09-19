@@ -1,4 +1,4 @@
-## About
+## About [![build status](https://secure.travis-ci.org/SaltwaterC/yas3-stream.png?branch=master)](https://travis-ci.org/SaltwaterC/yas3-stream)
 
 Yet Another S3 streaming uploader built on top of the `aws-sdk` library. The number of available solutions for this problem is shockingly high. Also, the number of solutions which properly provide a streaming solution is shockingly low.
 
@@ -6,7 +6,7 @@ By properly, I mean:
 
  * uses the [upload](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property) method of the S3 object part of `aws-sdk` rather than the MultiPart API directly which means the object size doesn't have to be bigger than 5MB
  * no extra fluff - it behaves like an actual `Writable` stream rather than making assumptions about the use case
- * doesn't buffer more data than necessary which is up to the size of a MultiPart chunk
+ * doesn't buffer more data than necessary which is up to the size of a MultiPart chunk multiplied by the number of workers i.e `partSize` * `queueSize` of `S3.ManagedUpload`
 
 This is implemented as a very thin wrapper over `S3.upload` as `PassThrough` stream. The output of the stream is passed as the Body param of the `S3.upload` method. For all intents and purposes it should be used as a `Writable` stream. This module does not provide a `Readable` stream as `aws-sdk` already implements one via `S3.getObject.createReadStream`.
 
@@ -37,11 +37,11 @@ rs.pipe(up);
 The `Uploader` constructor accepts three arguments:
 
  * `AWS.S3` instance
- * `params` 1st argument of `S3.upload` - object of which the Body key is always set as the output of `Uploader`
+ * `params` 1st argument of `S3.upload` - params object of which the Body key is always set as the output of the `Uploader` stream
  * `options` 2nd argument of `S3.upload` - defaults to `{}` and it is actually the options argument of `S3.ManagedUpload`
 
 Events:
 
- * `error` - emitted when `S3.upload` emits the error event
+ * `error` - emitted when `S3.upload` is passing an error argument to the completion callback
  * `progress` - emitted when the underlying `S3.ManagedUpload` emits the `httpUploadProgress` event
  * `close` - emitted when the completion callback of `S3.upload` is called and no error is being passed to this callback
