@@ -6,7 +6,7 @@ var _ = require('lodash');
 var assert = require('chai').assert;
 var AWS = require('aws-sdk');
 
-var Uploader = require('..');
+var Uploader = require('..').Uploader;
 
 describe('S3 Uploader stream test', function() {
   var payload;
