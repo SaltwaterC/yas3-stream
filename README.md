@@ -56,7 +56,7 @@ var list = new List(new AWS.S3(), {
 });
 
 list.on('data', function(object) {
-  console.log(object);
+  console.log(JSON.parse(object));
   /*
   { Key: 'file_name',
   LastModified: 2017-09-25T13:17:37.000Z,
@@ -78,3 +78,5 @@ Events:
 
  * `error` - emitted when `S3.listObjectsV2` encounters too many retries; the completion callback error argument is passed to the error event
  * `data` - emitted for every S3 object found in the bucket; basically it is an element of the `data.Contents` array passed to the completion callback of `S3.listObjectsV2`
+
+The List stream supports pausing. If the stream is paused, then no new `S3.listObjectsV2` requests are being sent, however, an in flight request may still be processing. While no new data events are being emitted while the stream is paused, the object list from the in flight request is going to be buffered by the stream.
