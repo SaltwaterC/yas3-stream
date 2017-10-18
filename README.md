@@ -1,4 +1,4 @@
-## About [![build status](https://secure.travis-ci.org/SaltwaterC/yas3-stream.png?branch=master)](https://travis-ci.org/SaltwaterC/yas3-stream)
+## About [![build status](https://secure.travis-ci.org/SaltwaterC/yas3-stream.png?branch=master)](https://travis-ci.org/SaltwaterC/yas3-stream) [![NPM version](https://badge.fury.io/js/yas3-stream.png)](http://badge.fury.io/js/yas3-stream)
 
 Yet Another S3 streaming solution built on top of the `aws-sdk` library. The number of available solutions for this problem is shockingly high. Also, the number of solutions which properly provide a streaming solution (for uploads) is shockingly low.
 
